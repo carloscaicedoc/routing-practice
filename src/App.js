@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import NumberText from './components/NumberText';
+import Hello from './components/Hello';
+import ColorfulText from './components/ColorfulText';
+
+const Home = () => {
+  return (
+    <h1 style={{ textAlign: "center", color: "navy" }}>Welcome</h1>
+  );
+}
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+
+      <Switch>
+        <Route path="/:value/:textColor/:bgColor">
+          <ColorfulText />
+        </Route>
+        <Route path="/hello/:word">
+          <Hello />
+        </Route>
+        <Route path="/:value">
+          <NumberText />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
